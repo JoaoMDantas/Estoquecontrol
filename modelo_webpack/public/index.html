@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Modelo</title>
+</head>
+
+<body>
+    <section class="container">
+        <h1>Controle de Estoque</h1><br>
+        <h3>Entradas e saídas de produtos:</h3>
+        Categoria:
+        <select id="quality"  class="category"   name="quality">
+          <option value="0" disabled selected>--Escolha uma opção</option>
+          <option value="equips" id="eqp">Acessórios e Equipamentos Esportivos</option>
+          <option value="suplementos" id="sup">Suplementos e Nutrição</option>
+          <option value="protect" id="acess">Acessórios de Proteção</option>
+        </select><br>
+        Nome:<select class="names" >
+          <option value="0"  id="remove" selected>--Escolha uma categoria</option>
+          </select><br>
+        Quantidade:<input type="number" class="qtd"><br>
+        Total de produtos em estoque:<div class="total-estoque " value="0"></div>
+ 
+        <br><button class="btn">Calcular</button>
+      
+    </section>
+ 
+  </section>
+
+  <script src="./assets/js/bundle.js"></script>
+</body>
+
+</html>
