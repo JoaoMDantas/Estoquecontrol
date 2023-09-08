@@ -5,13 +5,13 @@ const acess=document.querySelector("#acess");
 const guardEquips=eqp.innerHTML;
 const guardSuplementos=sup.innerHTML;
 const guardAcessorios=acess.innerHTML;
-const minSuple=35;
-const minAcess=35;
-const minEquips=35;
-let estoqueSuple=50;
-let estoqueAcess=50;
-let estoqueEquips=50;
-let totalpass=150;
+const minSuple=2000;
+const minAcess=750;
+const minEquips=1000;
+let estoqueSuple=2200
+let estoqueAcess=1000;
+let estoqueEquips=1500;
+let totalpass=4700;
 total.innerHTML=totalpass;
 function porcentagem(x,y){
      let result=(x/y)*100; 
@@ -19,18 +19,18 @@ function porcentagem(x,y){
 }
 export default btn.addEventListener('click',()=>{
      if(select.value=='My value equips'){
-       estoqueEquips= estoqueAtualizado(minEquips,`O estoque mínimo de acessórios e equipamentos esportivos é 35, estoque atual:${estoqueEquips}`, estoqueEquips);
+       estoqueEquips= estoqueAtualizado(minEquips,`O estoque mínimo de acessórios e equipamentos esportivos é 1000, estoque atual:${estoqueEquips}`, estoqueEquips);
     }if(select.value=='My value suplementos'){
-       estoqueSuple= estoqueAtualizado(minSuple,`O estoque mínimo de suplementos é 35, estoque atual:${estoqueSuple}`, estoqueSuple);
+       estoqueSuple= estoqueAtualizado(minSuple,`O estoque mínimo de suplementos é 2000, estoque atual:${estoqueSuple}`, estoqueSuple);
      }if(select.value=='My value protect'){
-        estoqueAcess=estoqueAtualizado(minAcess,`O estoque mínimo de acessórios de proteção, estoque atual:${estoqueAcess}`, estoqueAcess);
+        estoqueAcess=estoqueAtualizado(minAcess,`O estoque mínimo de acessórios de proteção é 750, estoque atual:${estoqueAcess}`, estoqueAcess);
     }
     AjustPorcentagem();
 })
 function estoqueAtualizado(x,y,z){
-    if(estoqueEquips+Number(qtd.value)<x){
-        alert(y);
-        return;
+    if(z+Number(qtd.value)>x){
+        alert("estoque acima do mínimo, não há necessidade de realizar novo pedido");
+        return z;
     }     
 
 

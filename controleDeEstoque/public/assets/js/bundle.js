@@ -97,13 +97,13 @@ var acess = document.querySelector("#acess");
 var guardEquips = eqp.innerHTML;
 var guardSuplementos = sup.innerHTML;
 var guardAcessorios = acess.innerHTML;
-var minSuple = 35;
-var minAcess = 35;
-var minEquips = 35;
-var estoqueSuple = 50;
-var estoqueAcess = 50;
-var estoqueEquips = 50;
-var totalpass = 150;
+var minSuple = 2000;
+var minAcess = 750;
+var minEquips = 1000;
+var estoqueSuple = 2200;
+var estoqueAcess = 1000;
+var estoqueEquips = 1500;
+var totalpass = 4700;
 _Nomesprod__WEBPACK_IMPORTED_MODULE_0__.total.innerHTML = totalpass;
 function porcentagem(x, y) {
   var result = x / y * 100;
@@ -111,20 +111,20 @@ function porcentagem(x, y) {
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.btn.addEventListener('click', function () {
   if (_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.select.value == 'My value equips') {
-    estoqueEquips = estoqueAtualizado(minEquips, "O estoque m\xEDnimo de acess\xF3rios e equipamentos esportivos \xE9 35, estoque atual:".concat(estoqueEquips), estoqueEquips);
+    estoqueEquips = estoqueAtualizado(minEquips, "O estoque m\xEDnimo de acess\xF3rios e equipamentos esportivos \xE9 1000, estoque atual:".concat(estoqueEquips), estoqueEquips);
   }
   if (_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.select.value == 'My value suplementos') {
-    estoqueSuple = estoqueAtualizado(minSuple, "O estoque m\xEDnimo de suplementos \xE9 35, estoque atual:".concat(estoqueSuple), estoqueSuple);
+    estoqueSuple = estoqueAtualizado(minSuple, "O estoque m\xEDnimo de suplementos \xE9 2000, estoque atual:".concat(estoqueSuple), estoqueSuple);
   }
   if (_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.select.value == 'My value protect') {
-    estoqueAcess = estoqueAtualizado(minAcess, "O estoque m\xEDnimo de acess\xF3rios de prote\xE7\xE3o, estoque atual:".concat(estoqueAcess), estoqueAcess);
+    estoqueAcess = estoqueAtualizado(minAcess, "O estoque m\xEDnimo de acess\xF3rios de prote\xE7\xE3o \xE9 750, estoque atual:".concat(estoqueAcess), estoqueAcess);
   }
   AjustPorcentagem();
 }));
 function estoqueAtualizado(x, y, z) {
-  if (estoqueEquips + Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value) < x) {
-    alert(y);
-    return;
+  if (z + Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value) > x) {
+    alert("estoque acima do mínimo, não há necessidade de realizar novo pedido");
+    return z;
   }
   z += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
   totalpass += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
