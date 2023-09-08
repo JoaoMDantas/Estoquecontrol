@@ -11,7 +11,7 @@
             const senha = document.getElementById("password").value;
             
             if (username === usernamePadrao && senha === senhaPadrao) {
-                window.location.href = "./public/main.html"; 
+                window.location.href = "../pageEstoque.html"; 
                 // Redirecionando para a pagina do estoque
             } 
             else {
