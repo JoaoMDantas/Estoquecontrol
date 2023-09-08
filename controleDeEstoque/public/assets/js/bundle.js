@@ -24,28 +24,24 @@ var qtd = document.querySelector('.qtd');
 var btn = document.querySelector('.btn');
 var total = document.querySelector('.total-estoque');
 var objDaloja = [['Raquetes', 'Pranchas de surfe', 'Bastões de beisebol e tacos de golfe', 'Luvas de boxe e equipamentos de luta'], ['Proteínas em pó', 'Barras energéticas', 'Vitaminas e suplementos esportivos', 'Shakes pós-treino'], ['Capacetes', 'Cotoveleiras, joelheiras e munhequeiras', 'Óculos de proteção', 'Protetores bucais']];
-console.log(objDaloja[0][1]);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (categorys.addEventListener('click', function () {
   var valueCategorys = categorys.value;
   if (valueCategorys == 'equips') {
-    limpaSelect();
-    for (var i = 0; i < 4; i++) {
-      select.options[select.options.length] = new Option(objDaloja[0][i], 'My value equips');
-    }
+    criaValues(0, 'My value equips');
   }
   if (valueCategorys == 'suplementos') {
-    limpaSelect();
-    for (var _i = 0; _i < 4; _i++) {
-      select.options[select.options.length] = new Option(objDaloja[1][_i], 'My value suplementos');
-    }
+    criaValues(1, 'My value suplementos');
   }
   if (valueCategorys == 'protect') {
-    limpaSelect();
-    for (var _i2 = 0; _i2 < 4; _i2++) {
-      select.options[select.options.length] = new Option(objDaloja[2][_i2], 'My value protect');
-    }
+    criaValues(2, 'My value protect');
   }
 }));
+function criaValues(x, y) {
+  limpaSelect();
+  for (var i = 0; i < 4; i++) {
+    select.options[select.options.length] = new Option(objDaloja[x][i], y);
+  }
+}
 function limpaSelect() {
   for (var i = 0; i < 4; i++) {
     select.remove(document.querySelector('.names').value = 'My value');
@@ -62,63 +58,56 @@ function limpaSelect() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   init: () => (/* binding */ init)
+/* harmony export */   AjustPorcentagem: () => (/* binding */ AjustPorcentagem),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Nomesprod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Nomesprod */ "./src/modules/Nomesprod.js");
 
 var eqp = document.querySelector("#eqp");
 var sup = document.querySelector("#sup");
 var acess = document.querySelector("#acess");
-var guard = eqp.innerHTML;
-var guard2 = sup.innerHTML;
-var guard3 = acess.innerHTML;
-var suples = 50;
-var acessorios = 50;
-var equips = 50;
+var guardEquips = eqp.innerHTML;
+var guardSuplementos = sup.innerHTML;
+var guardAcessorios = acess.innerHTML;
+var minSuple = 35;
+var minAcess = 35;
+var minEquips = 35;
+var estoqueSuple = 50;
+var estoqueAcess = 50;
+var estoqueEquips = 50;
 var totalpass = 150;
 _Nomesprod__WEBPACK_IMPORTED_MODULE_0__.total.innerHTML = totalpass;
 function porcentagem(x, y) {
   var result = x / y * 100;
   return "".concat(result.toFixed(2), "%");
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.btn.addEventListener('click', test2));
-function test2() {
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.btn.addEventListener('click', function () {
   if (_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.select.value == 'My value equips') {
-    if (equips + Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value) < 50) {
-      alert("O estoque m\xEDnimo de acess\xF3rios e equipamentos esportivos \xE9 50, estoque atual:".concat(equips));
-      return;
-    }
-    equips += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
-    totalpass += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
-    _Nomesprod__WEBPACK_IMPORTED_MODULE_0__.total.innerHTML = totalpass;
-    init();
+    estoqueEquips = estoqueAtualizado(minEquips, "O estoque m\xEDnimo de acess\xF3rios e equipamentos esportivos \xE9 35, estoque atual:".concat(estoqueEquips), estoqueEquips);
   }
   if (_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.select.value == 'My value suplementos') {
-    if (suples + Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value) < 50) {
-      alert("O estoque m\xEDnimo de suplementos \xE9 50, estoque atual:".concat(suples));
-      return;
-    }
-    suples += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
-    totalpass += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
-    _Nomesprod__WEBPACK_IMPORTED_MODULE_0__.total.innerHTML = totalpass;
-    init();
+    estoqueSuple = estoqueAtualizado(minSuple, "O estoque m\xEDnimo de suplementos \xE9 35, estoque atual:".concat(estoqueSuple), estoqueSuple);
   }
   if (_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.select.value == 'My value protect') {
-    if (acessorios + Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value) < 50) {
-      alert("O estoque m\xEDnimo de acess\xF3rios de prote\xE7\xE3o \xE9 50, estoque atual:".concat(acessorios));
-      return;
-    }
-    acessorios += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
-    totalpass += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
-    _Nomesprod__WEBPACK_IMPORTED_MODULE_0__.total.innerHTML = totalpass;
-    init();
+    estoqueAcess = estoqueAtualizado(minAcess, "O estoque m\xEDnimo de acess\xF3rios de prote\xE7\xE3o, estoque atual:".concat(estoqueAcess), estoqueAcess);
   }
+  AjustPorcentagem();
+}));
+function estoqueAtualizado(x, y, z) {
+  if (estoqueEquips + Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value) < x) {
+    alert(y);
+    return;
+  }
+  z += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
+  console.log(z);
+  totalpass += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
+  _Nomesprod__WEBPACK_IMPORTED_MODULE_0__.total.innerHTML = totalpass;
+  return z;
 }
-function init() {
-  eqp.innerHTML = "".concat(guard, " ").concat(porcentagem(equips, totalpass));
-  sup.innerHTML = "".concat(guard2, " ").concat(porcentagem(suples, totalpass));
-  acess.innerHTML = "".concat(guard3, " ").concat(porcentagem(acessorios, totalpass));
+function AjustPorcentagem() {
+  eqp.innerHTML = "".concat(guardEquips, " ").concat(porcentagem(estoqueEquips, totalpass));
+  sup.innerHTML = "".concat(guardSuplementos, " ").concat(porcentagem(estoqueSuple, totalpass));
+  acess.innerHTML = "".concat(guardAcessorios, " ").concat(porcentagem(estoqueAcess, totalpass));
 }
 
 /***/ }),
@@ -734,14 +723,14 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_Nomesprod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/Nomesprod */ "./src/modules/Nomesprod.js");
-/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/css/style.css */ "./src/assets/css/style.css");
-/* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/calc */ "./src/modules/calc.js");
+/* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/calc */ "./src/modules/calc.js");
+/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/css/style.css */ "./src/assets/css/style.css");
 
 
 
-_modules_calc__WEBPACK_IMPORTED_MODULE_2__["default"];
 _modules_Nomesprod__WEBPACK_IMPORTED_MODULE_0__["default"];
-(0,_modules_calc__WEBPACK_IMPORTED_MODULE_2__.init)();
+_modules_calc__WEBPACK_IMPORTED_MODULE_1__["default"];
+(0,_modules_calc__WEBPACK_IMPORTED_MODULE_1__.AjustPorcentagem)();
 })();
 
 /******/ })()
