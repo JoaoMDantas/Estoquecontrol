@@ -1,6 +1,6 @@
        //nome e senha padrão para o primeiro sprint
        const usernamePadrao='admin';
-       const senhaPadrao='@admiN';
+       const senhaPadrao='@aadmiN';
         const textDiv=document.getElementById('tentativas');
         //contador de tentativas
         let tentativas = 0;
@@ -11,7 +11,7 @@
             const senha = document.getElementById("password").value;
             
             if (username === usernamePadrao && senha === senhaPadrao) {
-                window.location.href = "../pageEstoque.html"; 
+                window.location.href = "./pageEstoque.html"; 
                 // Redirecionando para a pagina do estoque
             } 
             else {
