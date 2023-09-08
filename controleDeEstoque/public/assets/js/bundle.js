@@ -27,6 +27,7 @@ var objDaloja = [['Raquetes', 'Pranchas de surfe', 'Bastões de beisebol e tacos
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (categorys.addEventListener('click', function () {
   var valueCategorys = categorys.value;
   if (valueCategorys == 'equips') {
+    select.disabled = false;
     criaValues(0, 'My value equips');
   }
   if (valueCategorys == 'suplementos') {
@@ -36,17 +37,44 @@ var objDaloja = [['Raquetes', 'Pranchas de surfe', 'Bastões de beisebol e tacos
     criaValues(2, 'My value protect');
   }
 }));
+select.addEventListener('click', function () {
+  //para fazer a terceira entrega tive que realizar outro evento de click, dessa vez no select.
+
+  var valueSelect = select.value;
+  if (valueSelect == 'new obj') {
+    var newObj = prompt("digite o nome do produto:");
+    if (categorys.value == 'equips') {
+      unshiftNewObj(0, newObj);
+      criaValues(0, 'My value equips');
+    }
+    if (categorys.value == 'suplementos') {
+      unshiftNewObj(1, newObj);
+      criaValues(1, 'My value suplementos');
+    }
+    if (categorys.value == 'protect') {
+      unshiftNewObj(2, newObj);
+      criaValues(2, 'My value protect');
+    }
+  }
+});
+function unshiftNewObj(x, y) {
+  objDaloja[x].unshift(y);
+}
+//x é usado para identificar o array, e y é quem vai ser puxado
+
 function criaValues(x, y) {
   limpaSelect();
-  for (var i = 0; i < 4; i++) {
-    select.options[select.options.length] = new Option(objDaloja[x][i], y);
+  var tamanho = objDaloja[x].length;
+  for (var i = 0; i < tamanho; i++) {
+    select.options[i] = new Option(objDaloja[x][i], y);
   }
+  select.options[tamanho] = new Option('Adicione um novo item', 'new obj');
+  //adicionei essa option a ser criada, se clicada abre o prompt para adicionar um novo item
 }
+
 function limpaSelect() {
-  for (var i = 0; i < 4; i++) {
-    select.remove(document.querySelector('.names').value = 'My value');
-  }
-}
+  select.remove(select);
+} //refatorei essa função
 
 /***/ }),
 
@@ -99,7 +127,6 @@ function estoqueAtualizado(x, y, z) {
     return;
   }
   z += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
-  console.log(z);
   totalpass += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
   _Nomesprod__WEBPACK_IMPORTED_MODULE_0__.total.innerHTML = totalpass;
   return z;

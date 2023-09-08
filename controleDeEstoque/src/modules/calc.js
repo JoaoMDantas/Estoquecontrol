@@ -32,8 +32,9 @@ function estoqueAtualizado(x,y,z){
         alert(y);
         return;
     }     
+
+
 z+=Number(qtd.value);
-console.log(z);
 totalpass+=Number(qtd.value);
 total.innerHTML=totalpass;
 return z;
