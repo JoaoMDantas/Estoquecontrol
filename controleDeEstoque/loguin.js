@@ -1,6 +1,6 @@
        //nome e senha padrão para o primeiro sprint
        const usernamePadrao='admin';
-       const senhaPadrao='@aadmiN';
+       const senhaPadrao='@admiN';
         const textDiv=document.getElementById('tentativas');
         //contador de tentativas
         let tentativas = 0;
