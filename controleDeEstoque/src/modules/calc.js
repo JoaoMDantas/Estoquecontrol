@@ -17,7 +17,12 @@ function porcentagem(x,y){
      let result=(x/y)*100; 
      return `${result.toFixed(2)}%`;
 }
+
+
+
+
 export default btn.addEventListener('click',()=>{
+ 
      if(select.value=='My value equips'){
        estoqueEquips= estoqueAtualizado(minEquips,`O estoque mínimo de acessórios e equipamentos esportivos é 1000, estoque atual:${estoqueEquips}`, estoqueEquips);
     }if(select.value=='My value suplementos'){
@@ -28,11 +33,12 @@ export default btn.addEventListener('click',()=>{
     AjustPorcentagem();
 })
 function estoqueAtualizado(x,y,z){
+    if(qtd.value>1){
     if(z+Number(qtd.value)>x){
         alert("estoque acima do mínimo, não há necessidade de realizar novo pedido");
         return z;
     }     
-
+    }
 
 z+=Number(qtd.value);
 totalpass+=Number(qtd.value);

@@ -122,9 +122,11 @@ function porcentagem(x, y) {
   AjustPorcentagem();
 }));
 function estoqueAtualizado(x, y, z) {
-  if (z + Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value) > x) {
-    alert("estoque acima do mínimo, não há necessidade de realizar novo pedido");
-    return z;
+  if (_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value > 1) {
+    if (z + Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value) > x) {
+      alert("estoque acima do mínimo, não há necessidade de realizar novo pedido");
+      return z;
+    }
   }
   z += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
   totalpass += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
