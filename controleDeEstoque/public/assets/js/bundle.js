@@ -131,7 +131,7 @@ function estoqueAtualizado(x, y, z) {
   z += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
   totalpass += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
   _Nomesprod__WEBPACK_IMPORTED_MODULE_0__.total.innerHTML = totalpass;
-  alert("".concat(y, "+").concat(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value));
+  _Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value > 1 ? alert("".concat(y, "+").concat(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value)) : alert("".concat(y).concat(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value));
   return z;
 }
 function AjustPorcentagem() {

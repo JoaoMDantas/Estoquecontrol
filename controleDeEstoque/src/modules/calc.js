@@ -43,7 +43,7 @@ function estoqueAtualizado(x,y,z){
 z+=Number(qtd.value);
 totalpass+=Number(qtd.value);
 total.innerHTML=totalpass;
-alert(`${y}+${qtd.value}`);
+qtd.value>1 ? alert(`${y}+${qtd.value}`): alert(`${y}${qtd.value}`);
 return z;
 }
 export function AjustPorcentagem(){
