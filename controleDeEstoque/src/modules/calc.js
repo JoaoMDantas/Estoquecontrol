@@ -8,10 +8,10 @@ const guardAcessorios=acess.innerHTML;
 const minSuple=2000;
 const minAcess=750;
 const minEquips=1000;
-let estoqueSuple=2200
-let estoqueAcess=1000;
-let estoqueEquips=1500;
-let totalpass=4700;
+let estoqueSuple=1500;
+let estoqueAcess=300;
+let estoqueEquips=700;
+let totalpass=2500;
 total.innerHTML=totalpass;
 function porcentagem(x,y){
      let result=(x/y)*100; 
@@ -43,6 +43,7 @@ function estoqueAtualizado(x,y,z){
 z+=Number(qtd.value);
 totalpass+=Number(qtd.value);
 total.innerHTML=totalpass;
+alert(`${y}+${qtd.value}`);
 return z;
 }
 export function AjustPorcentagem(){

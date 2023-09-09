@@ -100,10 +100,10 @@ var guardAcessorios = acess.innerHTML;
 var minSuple = 2000;
 var minAcess = 750;
 var minEquips = 1000;
-var estoqueSuple = 2200;
-var estoqueAcess = 1000;
-var estoqueEquips = 1500;
-var totalpass = 4700;
+var estoqueSuple = 1500;
+var estoqueAcess = 300;
+var estoqueEquips = 700;
+var totalpass = 2500;
 _Nomesprod__WEBPACK_IMPORTED_MODULE_0__.total.innerHTML = totalpass;
 function porcentagem(x, y) {
   var result = x / y * 100;
@@ -131,6 +131,7 @@ function estoqueAtualizado(x, y, z) {
   z += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
   totalpass += Number(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value);
   _Nomesprod__WEBPACK_IMPORTED_MODULE_0__.total.innerHTML = totalpass;
+  alert("".concat(y, "+").concat(_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.qtd.value));
   return z;
 }
 function AjustPorcentagem() {
