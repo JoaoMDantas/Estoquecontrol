@@ -13,18 +13,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   btn: () => (/* binding */ btn),
 /* harmony export */   categorys: () => (/* binding */ categorys),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   deletarProduto: () => (/* binding */ deletarProduto),
+/* harmony export */   listarProdutos: () => (/* binding */ listarProdutos),
 /* harmony export */   objDaloja: () => (/* binding */ objDaloja),
 /* harmony export */   qtd: () => (/* binding */ qtd),
 /* harmony export */   select: () => (/* binding */ select),
 /* harmony export */   total: () => (/* binding */ total)
 /* harmony export */ });
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 var categorys = document.querySelector('.category');
 var select = document.querySelector('.names');
 var qtd = document.querySelector('.qtd');
 var btn = document.querySelector('.btn');
 var total = document.querySelector('.total-estoque');
+var btnlist = document.querySelector('#listarbtn');
+var btnRemove = document.querySelector('#removebtn');
+var btnAdd = document.querySelector('#addbtn');
 var objDaloja = [['Raquetes', 'Pranchas de surfe', 'Bastões de beisebol e tacos de golfe', 'Luvas de boxe e equipamentos de luta'], ['Proteínas em pó', 'Barras energéticas', 'Vitaminas e suplementos esportivos', 'Shakes pós-treino'], ['Capacetes', 'Cotoveleiras, joelheiras e munhequeiras', 'Óculos de proteção', 'Protetores bucais']];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (categorys.addEventListener('click', function () {
+  btnAdd.disabled = false;
   var valueCategorys = categorys.value;
   if (valueCategorys == 'equips') {
     select.disabled = false;
@@ -37,12 +46,15 @@ var objDaloja = [['Raquetes', 'Pranchas de surfe', 'Bastões de beisebol e tacos
     criaValues(2, 'My value protect');
   }
 }));
-select.addEventListener('click', function () {
+btnAdd.addEventListener('click', att);
+function att() {
   //para fazer a terceira entrega tive que realizar outro evento de click, dessa vez no select.
 
-  var valueSelect = select.value;
-  if (valueSelect == 'new obj') {
+  while (true) {
     var newObj = prompt("digite o nome do produto:");
+    if (newObj.toLowerCase() === 'sair' || newObj === '') {
+      break;
+    }
     if (categorys.value == 'equips') {
       unshiftNewObj(0, newObj);
       criaValues(0, 'My value equips');
@@ -56,7 +68,63 @@ select.addEventListener('click', function () {
       criaValues(2, 'My value protect');
     }
   }
-});
+}
+btnRemove.addEventListener('click', deletarProduto);
+function deletarProduto() {
+  var nomeProduto = prompt("Digite o nome do produto a ser excluído:");
+  var produtoEncontrado = false;
+  var _iterator = _createForOfIteratorHelper(objDaloja),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var categoria = _step.value;
+      var index = categoria.indexOf(nomeProduto);
+      if (index !== -1) {
+        categoria.splice(index, 1);
+        alert("Produto excluído com sucesso.");
+        produtoEncontrado = true;
+        limpaSelect();
+        break;
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+  if (!produtoEncontrado) {
+    alert("Produto não encontrado.");
+  }
+}
+btnlist.addEventListener('click', listarProdutos);
+function listarProdutos() {
+  var listadeprod = '';
+  var _iterator2 = _createForOfIteratorHelper(objDaloja),
+    _step2;
+  try {
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+      var produto = _step2.value;
+      var _iterator3 = _createForOfIteratorHelper(produto),
+        _step3;
+      try {
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var listar = _step3.value;
+          listadeprod += "\n".concat(listar, " ");
+        }
+      } catch (err) {
+        _iterator3.e(err);
+      } finally {
+        _iterator3.f();
+      }
+    }
+  } catch (err) {
+    _iterator2.e(err);
+  } finally {
+    _iterator2.f();
+  }
+  ;
+  alert('Lista de Produtos:' + listadeprod);
+}
 function unshiftNewObj(x, y) {
   objDaloja[x].unshift(y);
 }
@@ -760,6 +828,8 @@ __webpack_require__.r(__webpack_exports__);
 
 _modules_Nomesprod__WEBPACK_IMPORTED_MODULE_0__["default"];
 _modules_calc__WEBPACK_IMPORTED_MODULE_1__["default"];
+_modules_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.deletarProduto;
+_modules_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.listarProdutos;
 (0,_modules_calc__WEBPACK_IMPORTED_MODULE_1__.AjustPorcentagem)();
 })();
 

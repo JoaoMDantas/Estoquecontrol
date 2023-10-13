@@ -3,6 +3,9 @@ export const select=document.querySelector('.names');
 export let qtd=document.querySelector('.qtd');
 export let btn=document.querySelector('.btn');
 export let total=document.querySelector('.total-estoque');
+const btnlist=document.querySelector('#listarbtn');
+const btnRemove=document.querySelector('#removebtn');
+const btnAdd=document.querySelector('#addbtn');
 
 export const objDaloja=[
  [
@@ -24,7 +27,9 @@ export const objDaloja=[
 'Protetores bucais'
 ]
 ]
+
 export default categorys.addEventListener('click',()=>{
+    btnAdd.disabled=false;
 
     let valueCategorys=categorys.value;
     if(valueCategorys=='equips'){
@@ -38,18 +43,23 @@ export default categorys.addEventListener('click',()=>{
         criaValues(2,'My value protect');
     }
 })
-select.addEventListener('click',()=>{
-//para fazer a terceira entrega tive que realizar outro evento de click, dessa vez no select.
+btnAdd.addEventListener('click',att);
+function att(){
+    //para fazer a terceira entrega tive que realizar outro evento de click, dessa vez no select.
 
     
-        let valueSelect= select.value;
-        if(valueSelect=='new obj'){
+        while(true){
             let newObj=prompt("digite o nome do produto:");
+            if(newObj.toLowerCase()==='sair'|| newObj===''){
+                break;
+            }
             if(categorys.value=='equips'){
             unshiftNewObj(0,newObj);
             criaValues(0,'My value equips');
 
+
         }
+        
         if(categorys.value=='suplementos'){
             unshiftNewObj(1,newObj);
             criaValues(1,'My value suplementos');
@@ -58,12 +68,56 @@ select.addEventListener('click',()=>{
         if(categorys.value=='protect'){
             unshiftNewObj(2,newObj);
             criaValues(2,'My value protect');
+            
+        }
+    }
+    
+    
+    
+}
 
+
+btnRemove.addEventListener('click',deletarProduto);
+
+export function deletarProduto() {
+   
+        const nomeProduto = prompt("Digite o nome do produto a ser excluído:");
+        let produtoEncontrado = false;
+    
+        for (const categoria of objDaloja) {
+            const index = categoria.indexOf(nomeProduto);
+            
+            if (index !== -1) {
+                categoria.splice(index, 1);
+                alert("Produto excluído com sucesso.");
+                produtoEncontrado = true;
+                limpaSelect();
+                break; 
+            }
         }
     
-        
+        if (!produtoEncontrado) {
+            alert("Produto não encontrado.");
+        }
+    }
     
-}})
+  
+    
+ btnlist.addEventListener('click',listarProdutos);
+ export function listarProdutos() {
+    let listadeprod='';
+    for (const produto of objDaloja) {
+        for(const listar of produto){
+            listadeprod+=`\n${listar} `;
+     }
+
+      
+    };
+alert('Lista de Produtos:' + listadeprod);      
+    }
+  
+  
+  
 function unshiftNewObj(x,y){
     objDaloja[x].unshift(y);    
 }
