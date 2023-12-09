@@ -142,6 +142,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   listarProdutos: () => (/* binding */ listarProdutos)
 /* harmony export */ });
 /* harmony import */ var _Nomesprod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Nomesprod */ "./src/modules/Nomesprod.js");
+/*PBL1
+ Registrar  entradas de produto (nome, categoria e
+quantidade);
+• Declarar o valor mínimo permitido em estoque por categoria em
+constantes;
+• Calcular o quantitativo total de produtos em estoque em uma
+variável;
+• Apresentar a porcentagem de estoque no prompt de comando por
+categoria.*/
+
 
 var eqp = document.querySelector("#eqp");
 var sup = document.querySelector("#sup");
