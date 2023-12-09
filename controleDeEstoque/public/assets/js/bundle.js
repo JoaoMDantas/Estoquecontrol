@@ -14,7 +14,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   categorys: () => (/* binding */ categorys),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
 /* harmony export */   deletarProduto: () => (/* binding */ deletarProduto),
-/* harmony export */   listarProdutos: () => (/* binding */ listarProdutos),
 /* harmony export */   objDaloja: () => (/* binding */ objDaloja),
 /* harmony export */   qtd: () => (/* binding */ qtd),
 /* harmony export */   select: () => (/* binding */ select),
@@ -32,6 +31,19 @@ var btnlist = document.querySelector('#listarbtn');
 var btnRemove = document.querySelector('#removebtn');
 var btnAdd = document.querySelector('#addbtn');
 var objDaloja = [['Raquetes', 'Pranchas de surfe', 'Bastões de beisebol e tacos de golfe', 'Luvas de boxe e equipamentos de luta'], ['Proteínas em pó', 'Barras energéticas', 'Vitaminas e suplementos esportivos', 'Shakes pós-treino'], ['Capacetes', 'Cotoveleiras, joelheiras e munhequeiras', 'Óculos de proteção', 'Protetores bucais']];
+var categories = [{
+  value: "equips",
+  label: "Acessórios e Equipamentos Esportivos",
+  Number: 0
+}, {
+  value: "suplementos",
+  label: "Suplementos e Nutrição",
+  Number: 1
+}, {
+  value: "protect",
+  label: "Acessórios de Proteção",
+  Number: 2
+}];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (categorys.addEventListener('click', function () {
   btnAdd.disabled = false;
   var valueCategorys = categorys.value;
@@ -96,35 +108,6 @@ function deletarProduto() {
     alert("Produto não encontrado.");
   }
 }
-btnlist.addEventListener('click', listarProdutos);
-function listarProdutos() {
-  var listadeprod = '';
-  var _iterator2 = _createForOfIteratorHelper(objDaloja),
-    _step2;
-  try {
-    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-      var produto = _step2.value;
-      var _iterator3 = _createForOfIteratorHelper(produto),
-        _step3;
-      try {
-        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-          var listar = _step3.value;
-          listadeprod += "\n".concat(listar, " ");
-        }
-      } catch (err) {
-        _iterator3.e(err);
-      } finally {
-        _iterator3.f();
-      }
-    }
-  } catch (err) {
-    _iterator2.e(err);
-  } finally {
-    _iterator2.f();
-  }
-  ;
-  alert('Lista de Produtos:' + listadeprod);
-}
 function unshiftNewObj(x, y) {
   objDaloja[x].unshift(y);
 }
@@ -155,7 +138,8 @@ function limpaSelect() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AjustPorcentagem: () => (/* binding */ AjustPorcentagem),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   listarProdutos: () => (/* binding */ listarProdutos)
 /* harmony export */ });
 /* harmony import */ var _Nomesprod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Nomesprod */ "./src/modules/Nomesprod.js");
 
@@ -168,6 +152,7 @@ var guardAcessorios = acess.innerHTML;
 var minSuple = 2000;
 var minAcess = 750;
 var minEquips = 1000;
+var btnlist = document.querySelector('#listarbtn');
 var estoqueSuple = 1500;
 var estoqueAcess = 300;
 var estoqueEquips = 700;
@@ -177,6 +162,25 @@ function porcentagem(x, y) {
   var result = x / y * 100;
   return "".concat(result.toFixed(2), "%");
 }
+var categories = [{
+  value: "equips",
+  label: "Acessórios e Equipamentos Esportivos",
+  Number: 0,
+  estoque: 700,
+  estoqueMin: 1000
+}, {
+  value: "suplementos",
+  label: "Suplementos e Nutrição",
+  Number: 1,
+  estoque: 1500,
+  estoqueMin: 2000
+}, {
+  value: "protect",
+  label: "Acessórios de Proteção",
+  Number: 2,
+  estoque: 300,
+  estoqueMin: 700
+}];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.btn.addEventListener('click', function () {
   if (_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.select.value == 'My value equips') {
     estoqueEquips = estoqueAtualizado(minEquips, "O estoque m\xEDnimo de acess\xF3rios e equipamentos esportivos \xE9 1000, estoque atual:".concat(estoqueEquips), estoqueEquips);
@@ -206,6 +210,26 @@ function AjustPorcentagem() {
   eqp.innerHTML = "".concat(guardEquips, " ").concat(porcentagem(estoqueEquips, totalpass));
   sup.innerHTML = "".concat(guardSuplementos, " ").concat(porcentagem(estoqueSuple, totalpass));
   acess.innerHTML = "".concat(guardAcessorios, " ").concat(porcentagem(estoqueAcess, totalpass));
+}
+btnlist.addEventListener('click', listarProdutos);
+function listarProdutos() {
+  var report = 'Relatório de Estoque:\n\n';
+  categories.forEach(function (category) {
+    report += "Categoria: ".concat(category.label, " ");
+    report += "estoque Atual:".concat(category.estoque, ", estoque M\xE1ximo:").concat(category.estoqueMin, ", ").concat(porcentagem(category.estoque, totalpass), "\n");
+    _Nomesprod__WEBPACK_IMPORTED_MODULE_0__.objDaloja[category.Number].forEach(function (product) {
+      report += "- ".concat(product, "\n");
+    });
+    report += '\n';
+  });
+  var blob = new Blob([report], {
+    type: 'text/plain'
+  });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'relatorio_estoque.txt';
+  a.click();
 }
 
 /***/ }),
@@ -825,12 +849,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/css/style.css */ "./src/assets/css/style.css");
 
 
-
 _modules_Nomesprod__WEBPACK_IMPORTED_MODULE_0__["default"];
 _modules_calc__WEBPACK_IMPORTED_MODULE_1__["default"];
 _modules_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.deletarProduto;
-_modules_Nomesprod__WEBPACK_IMPORTED_MODULE_0__.listarProdutos;
+_modules_calc__WEBPACK_IMPORTED_MODULE_1__.listarProdutos;
 (0,_modules_calc__WEBPACK_IMPORTED_MODULE_1__.AjustPorcentagem)();
+
+/*import normal,{prencher} from './calc2.js';
+normal;
+prencher;*/
 })();
 
 /******/ })()

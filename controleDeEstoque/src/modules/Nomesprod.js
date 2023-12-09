@@ -27,6 +27,23 @@ export const objDaloja=[
 'Protetores bucais'
 ]
 ]
+const categories = [
+    {
+        value: "equips",
+        label: "Acessórios e Equipamentos Esportivos",
+        Number:0
+    },
+    {
+        value: "suplementos",
+        label: "Suplementos e Nutrição",
+        Number:1
+    },
+    {
+        value: "protect",
+        label: "Acessórios de Proteção",
+        Number:2
+    }
+];
 
 export default categorys.addEventListener('click',()=>{
     btnAdd.disabled=false;
@@ -103,18 +120,7 @@ export function deletarProduto() {
     
   
     
- btnlist.addEventListener('click',listarProdutos);
- export function listarProdutos() {
-    let listadeprod='';
-    for (const produto of objDaloja) {
-        for(const listar of produto){
-            listadeprod+=`\n${listar} `;
-     }
 
-      
-    };
-alert('Lista de Produtos:' + listadeprod);      
-    }
   
   
   
